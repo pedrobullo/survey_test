@@ -1,0 +1,295 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,500);
+
+.SurveyInput__text {
+  font-size: 16px;
+  line-height: 24px;
+  width: 100%;
+  height: 72px;
+  display: inline-block;
+  position: relative;
+  background-color: transparent;
+  font-family: Roboto, sans-serif;
+  cursor: auto;
+
+  .SurveyInput__text__input {
+    position: relative;
+    padding: 0;
+    margin-top: 14px;
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    background-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.87);
+    cursor: inherit;
+    font-style: inherit;
+    font-variant: inherit;
+    font-weight: inherit;
+    font-stretch: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    font-family: inherit;
+    opacity: 1;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    box-sizing: border-box;
+    -webkit-appearance: textfield;
+
+    &:valid {
+      color: #999;
+      outline:none;
+      ~ label {
+        transform: scale(0.75) translate(0px, -28px);
+        color: #999;
+      }
+      ~ div {
+        hr {
+          &:last-child {
+            border-color: #EEE;
+            transform: scaleX(1);
+          }
+        }
+      }
+    }
+
+    &:focus {
+      color: lightseagreen;
+      outline:none;
+      ~ label {
+        transform: scale(0.75) translate(0px, -28px);
+        color: lightseagreen;
+      }
+      ~ div {
+        hr {
+          &:last-child {
+            border-color: lightseagreen;
+            transform: scaleX(1);
+          }
+        }
+      }
+    }
+
+    &.SurveyInput__text__input--error {
+      color: #E64320 !important;
+      outline:none;
+      ~ label {
+        transform: scale(0.75) translate(0px, -28px);
+        color: #E64320;
+      }
+      ~ div {
+        hr {
+          border-color: #E64320 !important;
+        }
+      }
+    }
+  }
+
+  .SurveyInput__text__label {
+    position: absolute;
+    left: 0;
+    top: 38px;
+    line-height: 22px;
+    transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+    z-index: 1;
+    transform: scale(1) translate(0px, 0px);
+    transform-origin: left top 0;
+    pointer-events: none;
+    user-select: none;
+    color: rgba(0, 0, 0, 0.3);
+  }
+
+  > div {
+    hr {
+      &:first-child {
+        border-top: none rgb(224, 224, 224);
+        border-left: none rgb(224, 224, 224);
+        border-right: none rgb(224, 224, 224);
+        border-bottom: 1px solid rgb(224, 224, 224);
+        bottom: 8px;
+        box-sizing: content-box;
+        margin: 0px;
+        position: absolute;
+        width: 100%;
+      }
+      &:last-child {
+        border-top: none #999;
+        border-left: none #999;
+        border-right: none #999;
+        border-bottom: 2px solid #999;
+        bottom: 8px;
+        box-sizing: content-box;
+        margin: 0px;
+        position: absolute;
+        width: 100%;
+        transform: scaleX(0);
+        transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+      }
+    }
+  }
+}
+
+.SurveyInput__submit {
+  position: relative;
+  margin: 10px auto;
+  display: block;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  line-height: 52px;
+  font-size: 18px;
+  border-radius: 30px;
+  border: 0;
+  background-color: #F1F1F1;
+  color: #C9C9C9;
+  text-align: center;
+  transition: all .1s ease-in-out;
+
+  &:hover, &.loading {
+    transform: scale(.95);
+  }
+
+  &:active, &:focus {
+    opacity: 0.7;
+    outline: none;
+  }
+
+  &.loading {
+    transition: all 0s linear,opacity .1s ease;
+    -webkit-transition: all 0s linear,opacity .1s ease;
+    pointer-events: none;
+    &:before {
+      position: absolute;
+      content: '';
+      top: 0;
+      left: 0;
+      background: lightseagreen;
+      width: 100%;
+      height: 100%;
+      border-radius: 30px;
+      z-index: 0;
+    }
+
+    &:after {
+      position: absolute;
+      content: '';
+      top: 50%;
+      left: 50%;
+      margin: -.64285714em 0 0 -.64285714em;
+      width: 1.2em;
+      height: 1.2em;
+      -webkit-animation: button-spin .6s linear;
+      animation: button-spin .6s linear;
+      -webkit-animation-iteration-count: infinite;
+      animation-iteration-count: infinite;
+      border-radius: 500rem;
+      border-color: #FFF #FFF transparent transparent;
+      border-style: solid;
+      border-width: 0.18em;
+      box-shadow: 0 0 0 1px transparent;
+    }
+  }
+
+  &.SurveyInput__submit--green {
+    color: #FFF;
+    background-color: lightseagreen;
+    border: solid 2px lightseagreen;
+
+    &.loading:after {
+      border-color: #FFF #FFF transparent transparent;
+    }
+  }
+
+  &.SurveyInput__submit--inverse {
+    color: lightseagreen;
+    background-color: #FFF;
+    border: solid 2px lightgray;
+
+    &.loading:after {
+      border-color: lightseagreen lightseagreen transparent transparent;
+    }
+  }
+
+  &.disabled {
+    pointer-events: none;
+  }
+}
+
+.SurveyInput__map {
+  width: 100%;
+  height: 250px;
+  margin: 15px 0;
+}
+
+.SurveyInput__upload {
+  > input {
+    display: none;
+  }
+}
+
+.SurveyInput__avatar {
+  position: relative;
+  > div {
+    width: 100px;
+    height: 100px;
+    background-size: cover;
+    margin: 0 auto;
+    background-image: url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCACAAIADASIAAhEBAxEB/8QAGwABAQADAQEBAAAAAAAAAAAAAAEEBQcGAwj/xAAvEAACAgADBgQGAwEBAAAAAAAAAQIDBAUREiExMlFxBmGR0RQiQUKBsRNS4SOh/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAH/xAAVEQEBAAAAAAAAAAAAAAAAAAAAEf/aAAwDAQACEQMRAD8A/Rbk9XvfHqTafV+ofM+5Cou0+r9RtPq/UgAu0+r9RtPq/UgAu0+r9RtPq/UgAu0+r9RtPq/UgAu0+r9RtPq/UgAu0+r9RtPq/UgAu0+r9RtPq/UgAr5n3IV8z7kAAAAAabxDnKy6tVU6SxU1qk+EF1fsBssXjMPg4beJuhWnw1e99kae3xTgoPSuu+zzSSX/AKzx191mItlbdOU7JcZSerPmUe1q8U4Kb0srvr83FP8ATNxhMZh8ZDbw10LEuOj3rujmR9KLrMPbG2mcoWR4Si9GB1AGm8P5ysxg6rtI4qC1aXCa6r2NyQAAAAAFfM+5CvmfcgAAAfPE3Rw+Htus5K4uT/BzTFXzxWIsvtes5vafse38WWOGSWpffKMfxr/h4MoAAAAAPrhb7MNiK76npOD2l7HS8NdHE4eq6vlsipL8nLz3nhObnklSf2SlH8a/6BuAAQAABXzPuQr5n3IAAAGq8UVO3JMRotXDSfozwB1OyEbK5QmtYyTTXVM5vmmCnl+Nsonrot8Jf2j9GUYgAAAAAe/8L1OrJMPtcZ6z9WeLyvBTzDG10V66PfOX9Y/VnSK4RrrjCC0jFJJdEgKACAAAK+Z9yFfM+5AAAAGDm+W05lh9i35bI74WJb4v2M4Ac5zHLMVl82r63sfSyO+L/JgnVGk000mnxTMG7KMvultTwdLfVLT9FHOTOy7K8VmE0qK3sfWyW6K/J7inKMvpltQwdOvVrX9mckkkktEuCQowcoy2nLcPsVfNOW+djW+T9vIzgCAAAAAAr5n3IV8z7kAAAASc41wc7JKMVvbb0SMXM8woy6j+S973ywXGT8jwua5piMys1uls1J/LXHlXu/MD0uP8UYaluOEhK+S+7XZj7s1FvifMJv5P4a10UNf2aIFG8q8T5hB/P/DYujhp+jcYDxRhrmo4qEsPJ/drtR90eLAHU4TjZBTrkpQe9NPVMpzrKs0xGW2a0y2qm/mrlyv2fme6yzMKMxo/koe9c0Hxi/MgywAAAAFfM+5CvmfcgAw81zCrLsK7rd7e6EFxk+hkYm+vDUTuuls1wWrZzzNsfZmOLldZujwhD+qKPljsXdjsRK7ES2pvgvol0XkY4AAAAAAAMjA4u7A4mN2HlszXFfSS6MxwB0jKswqzHCq6rc1unB8YvoZhzjKcfZl2LjdXvjwnD6SR0PDX14miF1Mtqua1TIPoAAK+Z9yFfM+5qfEmY/AYBqt6X2/LDy6sDz/ivM/isT8LTL/hU/ma+6XsjQAFAAAAAAAAAAADf+FMz+FxPwt0v+Fr+Vv7Zf6aAAdUBqvDeY/H4BKx631aRn59GbUg/9k=');
+  }
+}
+
+.loading {
+  transition: all 0s linear,opacity .1s ease;
+  -webkit-transition: all 0s linear,opacity .1s ease;
+  pointer-events: none;
+  &:before {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    background: rgba(255, 255, 255, 0.8);
+    width: 100%;
+    height: 100%;
+    border-radius: 30px;
+    z-index: 100;
+  }
+
+  &:after {
+    position: absolute;
+    content: '';
+    top: 20%;
+    left: calc(50% - 1.2em);
+    width: 1.2em;
+    height: 1.2em;
+    -webkit-animation: button-spin .6s linear;
+    animation: button-spin .6s linear;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    border-radius: 500rem;
+    border-color: lightseagreen lightseagreen transparent transparent;
+    border-style: solid;
+    border-width: 0.5em;
+    box-shadow: 0 0 0 1px transparent;
+    z-index: 100;
+  }
+}
+
+@-webkit-keyframes button-spin {
+  from {
+    -webkit-transform:rotate(0);
+    transform:rotate(0)
+  }
+  to {
+    -webkit-transform:rotate(360deg);
+    transform:rotate(360deg)
+  }
+}
+
+@keyframes button-spin {
+  from {
+    -webkit-transform:rotate(0);
+    transform:rotate(0)
+  }
+  to {
+    -webkit-transform:rotate(360deg);
+    transform:rotate(360deg)
+  }
+}

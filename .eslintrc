@@ -1,0 +1,27 @@
+{
+  "extends": [
+    "airbnb"
+    // "plugin:ava/recommended"
+  ],
+  "globals": {
+    "google": true,
+    "window": true
+  },
+  "ecmaFeatures": {
+    "jsx": true,
+    "modules": true
+  },
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "parser": "babel-eslint",
+  "rules": {
+    "quotes": [2, "single"],
+    "strict": [2, "never"],
+    "react/jsx-closing-bracket-location": [1, "after-props"]
+  },
+  "plugins": [
+    "react"
+  ]
+}
