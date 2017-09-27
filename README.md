@@ -19,13 +19,14 @@ Formulário com finalidade de salvar os dados de uma única pessoa, incluindo su
 - Desenvolvimento das validações e máscaras (5 pontos)
 - Upload de imagem e geração de thumb (3 pontos)
 - Implementação do autocomplete. (API do google) (2 pontos)
-- Teste de integração (3 pontos) - x
+- Teste de integração (3 pontos)
 
 ### TODOS
 - Reset no input error ao digitar.
 - Default GoogleMaps location baseado no address.
 - Usar o localStorage para fazer backup de todo redux.state, ao invés somente das respostas, no submit.
-- Teste de integração
+- Configurar ambiente de teste
+- Coverage 100%
 
 ### Usage
 
