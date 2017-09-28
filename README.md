@@ -21,6 +21,25 @@ Formulário com finalidade de salvar os dados de uma única pessoa, incluindo su
 - Implementação do autocomplete. (API do google) (2 pontos)
 - Teste de integração (3 pontos)
 
+#### Estrutura de pasta
+Estrutura modular, baseada em dominios. Contendo:
+```
+| - Survey
+  | - __tests__ // all the tests for this module goes here
+      | - SurveyReducer.spec.js
+      | - SurveyActions.spec.js
+  | - components // Sub components of this module
+      | - SurveyInput.js
+      ...
+  | - pages // React Router Pages from this module
+      | - SurveyPage
+          | - SurveyPage.js
+          | - SurveyPage.css
+          ...
+  | - SurveyReducer.js
+  | - SurveyActions.js
+```
+
 ### TODOS
 - Reset no input error ao digitar.
 - Default GoogleMaps location baseado no address.
