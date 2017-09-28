@@ -24,11 +24,21 @@ const LS_AVATAR = 'easynvest_form_avatar';
 
 // Export Actions
 export const addSurvey = (survey) => ({ type: ADD_SURVEY, survey });
+export const resumeSurvey = (backup) => ({ type: RESUME_SURVEY, backup });
+export const errorSurvey = (error) => ({ type: FETCH_SURVEY_FAIL, error });
+export const fechingSurvey = () => ({ type: FETCH_SURVEY });
+export const fechingSuccessSurvey = () => ({ type: FETCH_SURVEY_SUCCESS });
+export const updatingSurvey = () => ({ type: UPDATE_SURVEY });
+export const updatingSurveySuccess = () => ({ type: UPDATE_SURVEY_SUCCESS });
+export const updatingSurveyFail = (error) => ({ type: UPDATE_SURVEY_FAIL, error });
+export const updatingAvatar = () => ({ type: UPDATE_AVATAR });
+export const updatingAvatarSuccess = (image) => ({ type: UPDATE_AVATAR_SUCCESS, avatar: image });
+export const updatingAvatarFail = () => ({ type: UPDATE_AVATAR_FAIL });
 
 // Fetch survey inputs
 export const fetchSurvey = () =>
   (dispatch) => {
-    dispatch({ type: FETCH_SURVEY });
+    dispatch(fechingSurvey());
 
     if (inputs.fields) {
       return setTimeout(() => { // Fake Loading delay
@@ -41,21 +51,21 @@ export const fetchSurvey = () =>
         };
 
         if (backup.responses || backup.avatar) {
-          dispatch({ type: RESUME_SURVEY, backup });
+          dispatch(resumeSurvey(backup));
         }
 
         dispatch(addSurvey(inputs));
-        dispatch({ type: FETCH_SURVEY_SUCCESS });
+        dispatch(fechingSuccessSurvey());
       }, 1000);
     }
 
     swal('Erro', 'Error getting survey form.', 'error').catch(swal.noop);
-    return dispatch({ type: FETCH_SURVEY_FAIL, error: 'Error getting survey form.' });
+    return errorSurvey('Error getting survey form.');
   };
 
 export const submitSurvey = (survey) =>
   (dispatch) => {
-    dispatch({ type: UPDATE_SURVEY });
+    dispatch(updatingSurvey());
 
     // Validate - JSON Schema
     const validateSchema = surveyResponsesValidation(survey.survey.responses);
@@ -66,22 +76,22 @@ export const submitSurvey = (survey) =>
 
       swal('Erro', errorMsg, 'error').catch(swal.noop);
 
-      return dispatch({ type: UPDATE_SURVEY_FAIL, error: validateSchema.errors });
+      return dispatch(updatingSurveyFail(validateSchema.errors));
     }
 
     return setTimeout(() => {
       localStorageHelper.set(LS_RESPONSES, survey);
-      dispatch({ type: UPDATE_SURVEY_SUCCESS });
+      dispatch(updatingSurveySuccess());
     }, 1000); // Fake Loading delay
   };
 
 export function uploadAvatar(file) {
   return (dispatch) => {
-    dispatch({ type: UPDATE_AVATAR });
+    dispatch(updatingAvatar());
 
     if (!file[0] || !(file[0].type || '').includes('image')) {
       swal('Erro', 'Imagem inválida.', 'error').catch(swal.noop);
-      return dispatch({ type: UPDATE_AVATAR_FAIL });
+      return dispatch(updatingAvatarFail());
     }
 
     const reader = new FileReader();
@@ -90,7 +100,7 @@ export function uploadAvatar(file) {
         createThumbnail(e.target.result) // Creating thumb promise
           .then((thumbnail) => {
             localStorageHelper.set(LS_AVATAR, thumbnail);
-            dispatch({ type: UPDATE_AVATAR_SUCCESS, avatar: thumbnail });
+            dispatch(updatingAvatarSuccess(thumbnail));
           });
       }, 1000); // Fake Loading delay
 
@@ -106,5 +116,8 @@ export const clearSurveyStorage = () => {
 
 
 window.clearSurveyStorage = () => clearSurveyStorage();
-console.warn('>>>>>> Para limpar o localStorage use o comando: clearSurveyStorage()'); // eslint-disable-line
+
+if (process.env.NODE_ENV !== 'test') {
+  console.warn('>>>>>> Para limpar o localStorage use o comando: clearSurveyStorage()'); // eslint-disable-line
+}
 

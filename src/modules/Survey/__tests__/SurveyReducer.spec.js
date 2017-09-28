@@ -19,19 +19,17 @@ const survey = {
 
 test('action for ADD_SURVEY is working', reducerTest(
   SurveyReducer,
-  { survey: { fields: [] } },
+  {},
   addSurvey(survey),
   {
-    survey: {
-      fields: [{
-        template: 'input',
-        name: 'txtFullname',
-        id: 'txtFullname',
-        value: '',
-        type: 'text',
-        class: 'input',
-      }],
-    },
+    fields: [{
+      template: 'input',
+      name: 'txtFullname',
+      id: 'txtFullname',
+      value: '',
+      type: 'text',
+      class: 'input',
+    }],
   },
 ));
 
