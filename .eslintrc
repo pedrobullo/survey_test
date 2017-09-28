@@ -5,7 +5,8 @@
   ],
   "globals": {
     "google": true,
-    "window": true
+    "window": true,
+    "global": true
   },
   "ecmaFeatures": {
     "jsx": true,
